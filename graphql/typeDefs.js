@@ -4,15 +4,18 @@ module.exports = gql`
     type Question{
         id: ID!
         body: String!
+        createdAt: String!
     }
 
-    input NewQuestionInput{
+    input createQuestionInput{
         body: String!
     }
     type Query{
         getQuestions: [Question]
+        getQuestion(questionId : ID!): Question
     }
     type Mutation{
-        newQuestion(newQuestionInput: NewQuestionInput): Question!
+        createQuestion(createQuestionInput: createQuestionInput): Question!
+        deleteQuestion(questionId: ID!): String! #não importa o que retorna
     }
 `;

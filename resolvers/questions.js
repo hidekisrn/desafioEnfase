@@ -10,21 +10,48 @@ module.exports = {
             } catch(err){
                 throw new Error(err);
             }
+        },
+        async getQuestion(_, { questionId }){
+            try{
+                const question = await Question.findById(questionId);
+                if(question){
+                    return question;
+                } else {
+                    throw new Error('Questão não existe')
+                }
+            } catch(err){
+                throw new Error(err);
+            }
         }
     },
     Mutation: {
-        async newQuestion(
+        async createQuestion(
             _,
             {
-                newQuestionInput: { body }
+                createQuestionInput: { body }
             }
         ){
-            const newQuestion = new Question({
-                body
+            const createQuestion = new Question({
+                body,
+                createdAt: new Date().toISOString()
             });
 
-            const newQuestions = await newQuestion.save();
-            return newQuestions;
+            const createQuestions = await createQuestion.save();
+            return createQuestions;
+        },
+
+        async deleteQuestion(_, { questionId }){
+            try {
+                const question = await Question.findById(questionId);
+                if(question){
+                    await question.delete();
+                    return 'Questão deletada com sucesso!';
+                } else {
+                    throw new Error('Questão não existe')
+                }
+            } catch(err){
+                throw new Error(err);
+            }
         }
     }
 }
