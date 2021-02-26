@@ -28,11 +28,11 @@ module.exports = {
         async createQuestion(
             _,
             {
-                createQuestionInput: { body }
+                createQuestionInput: { questionBody }
             }
         ){
             const createQuestion = new Question({
-                body,
+                questionBody,
                 createdAt: new Date().toISOString()
             });
 
@@ -50,6 +50,22 @@ module.exports = {
                     throw new Error('Questão não existe')
                 }
             } catch(err){
+                throw new Error(err);
+            }
+        },
+
+        async modifyQuestion(_, {questionId, questionBody }){
+            try{
+                const question = await Question.findById(questionId);
+
+                if(question){
+                    question.questionBody = questionBody
+                    await question.save();
+                    return question;
+                } else {
+                    throw new Error('Questão não existe')
+                }
+            } catch(err) {
                 throw new Error(err);
             }
         }
