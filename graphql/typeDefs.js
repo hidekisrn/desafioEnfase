@@ -7,6 +7,7 @@ module.exports = gql`
         createdAt: String!
         # em Alternatives poderia ser Alternative! para conter pelo menos 1 alternativa
         alternatives:[Alternative]!
+        alternativeCount: Int!
     }
 
     type Alternative{
