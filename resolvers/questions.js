@@ -1,4 +1,4 @@
-const { QuestionInputError } = require('apollo-server');
+// Definindo as operações(Query/Mutation) das questões do GraphQL no Apollo
 
 const Question = require('../models/Question');
 module.exports = {

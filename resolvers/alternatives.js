@@ -1,3 +1,4 @@
+// Definindo as operações(Query/Mutation) das alternativas do GraphQL no Apollo
 const Question = require('../models/Question');
 
 module.exports = {

@@ -1,3 +1,4 @@
+// Definição da estrutura/organização dos dados para o Mongoose
 const { model, Schema } = require('mongoose');
 
 const questionSchema = new Schema({
@@ -9,6 +10,7 @@ const questionSchema = new Schema({
         createdAt: String
     }]
 }
+// https://mongoosejs.com/docs/guide.html#versionKey
 // , { versionKey: false }
 );
 

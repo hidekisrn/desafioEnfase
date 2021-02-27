@@ -1,3 +1,4 @@
+// Definição da estrutura/organização dos dados para o Apollo
 const { gql } = require('apollo-server');
 
 module.exports = gql`

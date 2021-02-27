@@ -1,3 +1,4 @@
+// Definindo as operações(Query/Mutation) do GraphQL no Apollo
 const questionsResolvers = require('./questions');
 const commentsResolvers = require('./alternatives');
 
