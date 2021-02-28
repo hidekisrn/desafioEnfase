@@ -21,16 +21,18 @@ module.exports = gql`
     input createQuestionInput{
         questionBody: String!
     }
+
     type Query{
         getQuestions: [Question]
         getQuestion(questionId : ID!): Question
     }
+    
     type Mutation{
         createQuestion(createQuestionInput: createQuestionInput): Question!
         deleteQuestion(questionId: ID!): String! #não importa o que retorna
-        modifyQuestion(questionId: ID!, questionBody: String!): Question!
-        createAlternative(questionId: String!, alternativeBody: String!, correctAnswer: Boolean!): Question!
+        editQuestion(questionId: ID!, questionBody: String!): Question!
+        createAlternative(questionId: ID!, alternativeBody: String!, correctAnswer: Boolean!): Question!
         deleteAlternative(questionId: ID!, alternativeId: ID!): Question!
-        modifyAlternative(questionId: ID!, alternativeId: ID!, alternativeBody: String!, correctAnswer: Boolean!): Question
+        editAlternative(questionId: ID!, alternativeId: ID!, alternativeBody: String!, correctAnswer: Boolean!): Question
     }
 `;

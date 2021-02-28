@@ -1,6 +1,9 @@
 // Definindo as operações(Query/Mutation) das questões do GraphQL no Apollo
 
 const Question = require('../models/Question');
+const { validateQuestionInput } = require('../util/validators');
+const { UserInputError  } = require('apollo-server');
+
 module.exports = {
     Query: {
         async getQuestions(){
@@ -31,6 +34,12 @@ module.exports = {
                 createQuestionInput: { questionBody }
             }
         ){
+            const { valid, errors } = validateQuestionInput(
+                questionBody
+            );
+            if (!valid){
+                throw new UserInputError('Errors', { errors });
+            }
             const createQuestion = new Question({
                 questionBody,
                 createdAt: new Date().toISOString()
@@ -54,7 +63,7 @@ module.exports = {
             }
         },
 
-        async modifyQuestion(_, {questionId, questionBody }){
+        async editQuestion(_, {questionId, questionBody }){
             try{
                 const question = await Question.findById(questionId);
 

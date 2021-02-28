@@ -38,7 +38,7 @@ module.exports = {
             }
         },
 
-        modifyAlternative: async(_, {questionId, alternativeId, alternativeBody, correctAnswer }) => {
+        editAlternative: async(_, {questionId, alternativeId, alternativeBody, correctAnswer }) => {
             const question = await Question.findById(questionId);
 
             if (question){
