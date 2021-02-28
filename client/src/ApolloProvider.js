@@ -11,7 +11,7 @@ const httpLink = createHttpLink({
 });
 
 const client = new ApolloClient({
-    connectToDevTools: true, // permite a utilização do ApolloCLient Developer Tools
+    // connectToDevTools: true, // permite a utilização do ApolloCLient Developer Tools
     link: httpLink,
     cache: new InMemoryCache()
 });
