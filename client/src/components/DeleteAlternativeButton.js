@@ -6,7 +6,7 @@ import { Button, Icon, Confirm } from 'semantic-ui-react'
 
 function DeleteAlternativeButton({ questionId, alternativeId }){
     
-    console.log(questionId);
+    console.log('ids', questionId, alternativeId);
 
     const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -42,8 +42,15 @@ function DeleteAlternativeButton({ questionId, alternativeId }){
 
 const DELETE_ALTERNATIVE_MUTATION = gql`
     mutation deleteAlternative($questionId: ID!, $alternativeId: ID!){
-        deleteAlternative(questionId: $questionId, alternativeId: $alternativeId)
+        deleteAlternative(questionId: $questionId, alternativeId: $alternativeId){
+            id
+            questionBody
+            alternatives{
+                id
+                alternativeBody
+            }
+        }
     }
 `;
 
-export default DeleteAlternativeButton
+export default DeleteAlternativeButton;

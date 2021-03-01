@@ -8,6 +8,7 @@ import './App.css';
 import Home from './pages/Home';
 import NewQuestion from './pages/NewQuestion';
 import SingleQuestion from './pages/SingleQuestion';
+import EditQuestion from './pages/EditQuestion';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route exact path="/newquestion" component={NewQuestion}/>
         <Route exact path="/questions/:questionId" component={SingleQuestion}/>
+        <Route exact path="/editquestions/:questionId" component = {EditQuestion}/>
       </Container>
     </Router>
   );
