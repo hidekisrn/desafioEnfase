@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/client';
-import { Grid, Item, Form } from 'semantic-ui-react';
+import { Grid, Item, Form, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import AlternativeCard from '../components/AlternativeCard';
-
+import { FETCH_QUESTION_QUERY, SUBMIT_ALTERNATIVE_MUTATION } from '../utils/graphql';
 
 function SingleQuestion(props){
+
     const questionId = props.match.params.questionId;
 
     const [alternativeBody, setAlternative] = useState('');
@@ -20,7 +21,6 @@ function SingleQuestion(props){
             isCorrect = false;
         }
         console.log('iscorrect', isCorrect);
-
         setAlternativeAnswer(isCorrect);
     }
 
@@ -59,9 +59,11 @@ function SingleQuestion(props){
             createdAt,
             alternatives
         } = data.getQuestion;
-
         questionMarkup = (
-
+            <>
+            <p></p>
+            <Button as={Link} to="/">Home</Button>
+            <p></p>
             <Grid divided="vertically">
                 <Grid.Row columns={1}>
                     <Grid.Column>
@@ -80,8 +82,7 @@ function SingleQuestion(props){
                                     placeholder="Enunciado da alternativa..."
                                     name="alternativeBody"
                                     value={alternativeBody}
-                                    onChange={event => setAlternative(event.target.value)}
-                                    />
+                                    onChange={event => setAlternative(event.target.value)}/>
                                 <select name="correctAnswer" value={correctAnswer} className="ui dropdown" style={{width:'300px'}} onChange={handleChange}>
                                     <option value="true">Verdadeiro</option>
                                     <option value="false">Falso</option>
@@ -90,8 +91,8 @@ function SingleQuestion(props){
                                     className="ui button teal"
                                     disabled={alternativeBody.trim() === ''}
                                     onClick={submitAlternative}>
-                                        Submit
-                                    </button>
+                                    Submit
+                                </button>
                             </div>
                         </Form>
                     </Grid.Column>
@@ -100,13 +101,12 @@ function SingleQuestion(props){
                     <Item.Group>
                         <Item>
                             <Item.Content>
-                                <Item.Header><h1>{questionBody}</h1></Item.Header>
+                                <Item.Header><h1>Questão: {questionBody}</h1></Item.Header>
                                 <Item.Meta>{moment(createdAt).fromNow()}</Item.Meta>
                             </Item.Content>
                         </Item>
                     </Item.Group>
                 </Grid.Row>
-
                 {alternatives.map((alternative) => (
                     <Grid.Row key={alternative.id}>
                         <AlternativeCard questionId={questionId}alternative= {alternative}/>
@@ -114,40 +114,10 @@ function SingleQuestion(props){
                 ))
             }
             </Grid>
+            </>
         )
     }
     return questionMarkup;
 }
-
-const FETCH_QUESTION_QUERY = gql`
-    query getQuestion($questionId: ID!){
-        getQuestion(questionId: $questionId){
-            id
-            questionBody
-            createdAt
-            alternatives{
-                id
-                alternativeBody
-                createdAt
-                correctAnswer
-            }
-        }
-    }
-`;
-
-const SUBMIT_ALTERNATIVE_MUTATION = gql `
-    mutation ($questionId: ID!, $alternativeBody: String!, $correctAnswer: Boolean!){
-        createAlternative(questionId: $questionId, alternativeBody: $alternativeBody, correctAnswer: $correctAnswer){
-            id
-            alternatives{
-                id
-                alternativeBody
-                correctAnswer
-                createdAt
-            }
-            alternativeCount
-        }
-    }
-`;
 
 export default SingleQuestion;

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import { Form, Button } from 'semantic-ui-react';
+import { EDIT_QUESTION_MUTATION } from '../utils/graphql';
 
 function EditQuestion(props){
+
     const questionId = props.match.params.questionId;
 
     const [ questionBody, setQuestionBody] = useState('');
@@ -27,32 +29,25 @@ function EditQuestion(props){
 
    return(
     <div>
-    <Form onSubmit={ onSubmit } className={loading? "loading" : ''}>
-        <h1>Editar alternativa</h1>
-        <input
-            type="text"
-            label="Novo enunciado da questão"
-            placeholder="novo enunciado da questão..."
-            name="questionBody"
-            value={questionBody}
-            onChange={event => setQuestionBody(event.target.value)}/>
-        
-        <Button type="submit" primary>
-            Enviar questão alterada
-        </Button>
-    </Form>
-</div>
+        <p></p>
+        <Button as={Link} to="/">Voltar</Button>
+        <p></p>
+        <Form onSubmit={ onSubmit } className={loading? "loading" : ''}>
+            <h1>Editar questão</h1>
+            <input
+                type="text"
+                label="Novo enunciado da questão"
+                placeholder="novo enunciado da questão..."
+                name="questionBody"
+                value={questionBody}
+                onChange={event => setQuestionBody(event.target.value)}/>
+            <p></p>
+            <Button type="submit" primary>
+                Enviar questão alterada
+            </Button>
+        </Form>
+    </div>
    )
-
 }
-
-const EDIT_QUESTION_MUTATION = gql`
-    mutation editQuestion($questionId: ID!, $questionBody: String!){
-        editQuestion(questionId: $questionId, questionBody: $questionBody){
-            id
-            questionBody
-        }
-    }
-`;
 
 export default EditQuestion;

@@ -5,6 +5,7 @@ import moment from 'moment';
 import DeleteQuestionButton from './DeleteQuestionButton';
 
 function QuestionCard({ question: { id, questionBody, createdAt } }){
+
     return(
         <Item.Group>
             <Item>
@@ -21,4 +22,4 @@ function QuestionCard({ question: { id, questionBody, createdAt } }){
     )
 }
 
-export default QuestionCard
+export default QuestionCard;

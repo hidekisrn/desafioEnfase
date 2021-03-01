@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import { CREATE_QUESTION } from '../utils/graphql';
+import { Link } from 'react-router-dom';
 
 function NewQuestion(props){
 
@@ -19,6 +20,7 @@ function NewQuestion(props){
         update(result){
             console.log(result);
             props.history.push('/');
+            window.location.reload();
         },
         onError(err){
             console.log(err.graphQLErrors[0].extensions.exception.errors);
@@ -34,6 +36,9 @@ function NewQuestion(props){
 
     return(
         <div>
+            <p></p>
+            <Button as={Link} to="/">Voltar</Button>
+            <p></p>
             <Form onSubmit={ onSubmit } className={loading? "loading" : ''}>
                 <h1>Cadastrar nova questão</h1>
                 <Form.Input
@@ -42,8 +47,7 @@ function NewQuestion(props){
                     name="questionBody"
                     value={values.questionBody}
                     error={errors.questionBody ? true : false}
-                    onChange={onChange}
-                    />
+                    onChange={onChange}/>
                 <Button type="submit" primary>
                     Adicionar questão
                 </Button>
@@ -60,19 +64,5 @@ function NewQuestion(props){
         </div>
     );
 }
-
-const CREATE_QUESTION = gql`
-    mutation createQuestion(
-        $questionBody: String!
-    ){
-        createQuestion(
-            createQuestionInput: {
-                questionBody: $questionBody
-            }
-        ){
-            id questionBody createdAt
-        }
-    }
-`;
 
 export default NewQuestion;

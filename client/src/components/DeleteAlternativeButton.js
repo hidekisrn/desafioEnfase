@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-
 import { Button, Icon, Confirm } from 'semantic-ui-react'
+import { DELETE_ALTERNATIVE_MUTATION } from '../utils/graphql';
+// import { useHistory } from 'react-router-dom';
 
 function DeleteAlternativeButton({ questionId, alternativeId }){
+
+    // const history = useHistory();
     
     console.log('ids', questionId, alternativeId);
 
@@ -13,7 +15,7 @@ function DeleteAlternativeButton({ questionId, alternativeId }){
     const [deleteAlternative] = useMutation(DELETE_ALTERNATIVE_MUTATION, {
         update(){
             setConfirmOpen(false);
-            // TODO: REMOVER QUESTÃO DA MEMORIA CACHE
+            // history.push('/');
         },
         variables: {
             questionId,
@@ -27,10 +29,8 @@ function DeleteAlternativeButton({ questionId, alternativeId }){
             as='div'
             color="red"
             floated="left"
-            onClick={() => setConfirmOpen(true)}
-            >
+            onClick={() => setConfirmOpen(true)}>
                 <Icon name="trash" style={{ margin: 0 }}/>
-
         </Button>
         <Confirm
             open={confirmOpen}
@@ -39,18 +39,5 @@ function DeleteAlternativeButton({ questionId, alternativeId }){
         </>
     )
 }
-
-const DELETE_ALTERNATIVE_MUTATION = gql`
-    mutation deleteAlternative($questionId: ID!, $alternativeId: ID!){
-        deleteAlternative(questionId: $questionId, alternativeId: $alternativeId){
-            id
-            questionBody
-            alternatives{
-                id
-                alternativeBody
-            }
-        }
-    }
-`;
 
 export default DeleteAlternativeButton;

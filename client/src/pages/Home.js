@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Grid } from 'semantic-ui-react';
-
+import { Button, Grid } from 'semantic-ui-react';
 import { FETCH_QUESTIONS_QUERY } from '../utils/graphql';
 import QuestionCard from '../components/QuestionCard';
 import { Link } from 'react-router-dom';
@@ -15,15 +14,15 @@ function Home(){
 
     return (
         <Grid divided='vertically'>
+            <p></p>
             <Grid.Row columns={2}>
                 <Grid.Column>
                     <h1>Questões</h1>
                 </Grid.Column>
-                <Grid.Column as={Link}to="/newquestion">
-                    <h1>Adicionar questão</h1>
+                <Grid.Column>
+                    <Button as={Link}to="/newquestion">Adicionar questão</Button>
                 </Grid.Column>
             </Grid.Row>
-
             {loading && !data ? (
                 <h1>Carregando questões...</h1>
             ) : (

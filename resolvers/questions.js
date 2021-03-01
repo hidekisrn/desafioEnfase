@@ -54,7 +54,7 @@ module.exports = {
                 const question = await Question.findById(questionId);
                 if(question){
                     await question.delete();
-                    return 'Questão deletada com sucesso!';
+                    return question;
                 } else {
                     throw new Error('Questão não existe')
                 }

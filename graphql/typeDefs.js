@@ -29,7 +29,7 @@ module.exports = gql`
     
     type Mutation{
         createQuestion(createQuestionInput: createQuestionInput): Question!
-        deleteQuestion(questionId: ID!): String! #não importa o que retorna
+        deleteQuestion(questionId: ID!): Question!
         editQuestion(questionId: ID!, questionBody: String!): Question!
         createAlternative(questionId: ID!, alternativeBody: String!, correctAnswer: Boolean!): Question!
         deleteAlternative(questionId: ID!, alternativeId: ID!): Question!
