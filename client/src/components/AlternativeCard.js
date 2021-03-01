@@ -12,7 +12,7 @@ function AlternativeCard({ questionId, alternative: { id, alternativeBody, corre
                     <Item.Header>{alternativeBody}</Item.Header>
                     <Item.Meta>Resposta da alternativa: {String(correctAnswer)}</Item.Meta>
                     <DeleteAlternativeButton alternativeId={id} questionId={questionId}/>
-                    <Button as='div' floated="left" as={Link} to={`/editquestions/${questionId}`}>
+                    <Button as='div' floated="left" as={Link} to={`/editalternative/${questionId}/${id}`}>
                         <Icon name="edit" style={{ margin: 0 }}/>
                     </Button>
                 </Item.Content>

@@ -22,7 +22,7 @@ function SingleQuestion(props){
         console.log('iscorrect', isCorrect);
 
         setAlternativeAnswer(isCorrect);
-      }
+    }
 
     const {
         loading,

@@ -28,7 +28,7 @@ function NewQuestion(props){
     });
 
     const onSubmit = (event) => {
-         event.preventDefault();
+        event.preventDefault();
         addQuestion()
     };
 

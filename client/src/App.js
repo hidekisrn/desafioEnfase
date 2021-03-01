@@ -8,6 +8,7 @@ import './App.css';
 import Home from './pages/Home';
 import NewQuestion from './pages/NewQuestion';
 import SingleQuestion from './pages/SingleQuestion';
+import EditAlternative from './pages/EditAlternative';
 import EditQuestion from './pages/EditQuestion';
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route exact path="/newquestion" component={NewQuestion}/>
         <Route exact path="/questions/:questionId" component={SingleQuestion}/>
-        <Route exact path="/editquestions/:questionId" component = {EditQuestion}/>
+        <Route exact path="/editalternative/:questionId/:alternativeId" component={EditAlternative}/>
+        <Route exact path="/editquestion/:questionId" component={EditQuestion}/>
       </Container>
     </Router>
   );
