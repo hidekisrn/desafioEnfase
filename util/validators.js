@@ -1,3 +1,4 @@
+// Validação de dados
 module.exports.validateQuestionInput = (
     questionBody
 ) => {

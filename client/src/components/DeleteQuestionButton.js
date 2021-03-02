@@ -15,7 +15,7 @@ function DeleteQuestionButton({ questionId }){
         variables: {
             questionId
         }
-    })
+    });
 
     return(
         <>

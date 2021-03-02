@@ -13,6 +13,7 @@ function EditAlternative(props){
     const [ correctAnswer, setAlternativeAnswer] = useState(true);
 
     const handleChange = (e) => {
+        // Variável utilizada para retornar um Boolean. correctAnswer é do tipo bool
         let isCorrect;
         if (e.target.value === "true"){
             isCorrect = true;

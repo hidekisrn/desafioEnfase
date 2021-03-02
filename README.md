@@ -15,34 +15,47 @@ um todo.</p>
 <p>GraphQL(Apollo)</p>
 
 # Como executar:
-<p> Adicionar os seguintes pacotes à pasta root:</p>
+<p>Primeiramente você deve ter instalado o gerenciador de pacotes npm.</p>
+<p>Adicionar os seguintes pacotes à pasta root:</p>
 
 ```
 npm add apollo-server graphql graphql-tag mongoose react-router-dom
 npm add -D nodemon
 ```
 
-<p> Iniciar o client com:</p>
+<p>Iniciar o client com:</p>
 
 ```
 npx create-react-app client
 ```
 
-<p> Depois mudar para o diretório client(ou o nome da sua aplicação) e adicionar os seguintes pacotes ao client</p>
+<p>Depois mudar para o diretório client(ou o nome da sua aplicação) e adicionar os seguintes pacotes ao client:</p>
 
 ```
 npm add @apollo/client graphql graphql-tag moment semantic-ui-react semantic-ui-css
 ```
 
-<p> Abrir dois terminais, um para rodar o servidor e o outro para rodar o client, com os seguintes comandos:</p>
-<p>No root do projeto:</p>
+<p>Abrir dois terminais, um para rodar o servidor e o outro para rodar o client.</p>
+<p>Executar os comandos na pasta root do projeto:</p>
 
 ```
 npm start
 ```
 
-<p>Na pasta client do projeto:</p>
+<p>Executar os comandos na pasta client do projeto:</p>
 
 ```
 npm start
+```
+
+<p>Link para acessar a API:</p>
+
+```
+localhost:5000
+```
+
+<p>Link para acessar a aplicação:</p>
+
+```
+localhost:3000
 ```

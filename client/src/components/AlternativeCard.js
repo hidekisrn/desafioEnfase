@@ -5,6 +5,7 @@ import DeleteAlternativeButton from './DeleteAlternativeButton';
 
 function AlternativeCard({ questionId, alternative: { id, alternativeBody, correctAnswer } }){
 
+    // Variável utilizada para traduzir a resposta para pt-BR
     let correctAnswerToPTBR;
     if(correctAnswer){
         correctAnswerToPTBR="Verdadeiro";

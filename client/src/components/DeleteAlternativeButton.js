@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Button, Icon, Confirm } from 'semantic-ui-react'
 import { DELETE_ALTERNATIVE_MUTATION } from '../utils/graphql';
-// import { useHistory } from 'react-router-dom';
 
 function DeleteAlternativeButton({ questionId, alternativeId }){
-
-    // const history = useHistory();
     
     console.log('ids', questionId, alternativeId);
 
@@ -15,7 +12,6 @@ function DeleteAlternativeButton({ questionId, alternativeId }){
     const [deleteAlternative] = useMutation(DELETE_ALTERNATIVE_MUTATION, {
         update(){
             setConfirmOpen(false);
-            // history.push('/');
         },
         variables: {
             questionId,

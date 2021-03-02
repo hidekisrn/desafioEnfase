@@ -1,3 +1,4 @@
+// Querys e Mutations utilizadas na aplicação(client)
 import gql from 'graphql-tag';
 
 export const FETCH_QUESTIONS_QUERY = gql`
